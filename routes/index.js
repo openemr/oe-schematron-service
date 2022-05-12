@@ -3,7 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const validator = require('cda-schematron');
+const validator = require('oe-cda-schematron');
 const config = require('../config');
 
 // Where to look for resource files
