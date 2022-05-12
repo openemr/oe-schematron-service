@@ -1,7 +1,7 @@
 // jshint node:true
 var config = {
     server: {
-        port: 8080,
+        port: 6662,
         routesDirectory: './routes',
         logDirectory: './logs',
         appDirectory: __dirname

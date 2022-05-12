@@ -1,5 +1,5 @@
 {
-  "name": "cda-schematron-server",
+ "name": "oe-schematron-service",
   "version": "1.0.0",
   "description": "A server wrapper for C-CDA schematron validation in Node.js",
   "main": "app.js",
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ewadkins/cda-schematron-server.git"
+    "url": "git+https://github.com/sjpadgett/oe-schematron-service.git"
   },
-  "author": "Eric Wadkins",
+  "author": "Eric Wadkins, Jerry Padgett",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ewadkins/cda-schematron-server/issues"
+    "url": "https://github.com/sjpadgett/oe-schematron-service/issues"
   },
-  "homepage": "https://github.com/ewadkins/cda-schematron-server#readme"
+  "homepage": "https://github.com/sjpadgett/oe-schematron-service#readme"
 }
