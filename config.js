@@ -8,7 +8,7 @@ var config = {
     },
     validator: {
         baseDirectory: './schematron', // Contains schematron and other necessary resource files (eg. 'voc.xml')        
-        includeWarnings: true,
+        includeWarnings: false,
         xmlSnippetMaxLength: 200 // set to 0 for no max length
     }
 };
