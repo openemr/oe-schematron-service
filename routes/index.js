@@ -4,7 +4,18 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const validator = require('oe-cda-schematron');
-const config = require('../config');
+const config = {
+    server: {
+        port: 6662,
+        appDirectory:  __dirname
+    },
+    validator: {
+        baseDirectory: './../schematron',
+        includeWarnings: false,
+        xmlSnippetMaxLength: 200 // set to 0 for no max length
+    }
+};
+
 
 // Where to look for resource files
 let baseDirectory = path.join(config.server.appDirectory, config.validator.baseDirectory);
@@ -37,9 +48,9 @@ module.exports = function (logger) {
     router.post('/', function (req, res) {
         reqType = req.query.type;
         let xml = req.body.toString();
-        logger.info('Validating.. (size: ' + xml.length + ')');
+        logger.debug('Validating.. (size: ' + xml.length + ')');
         if (reqType !== schemaType) {
-            logger.info('Changing Schema (New Schema: ' + reqType + ')');
+            logger.debug('Changing Schema (New Schema: ' + reqType + ')');
             baseDirectory = path.join(config.server.appDirectory, config.validator.baseDirectory);
             fetchSchema(reqType);
         }

@@ -1,6 +1,6 @@
 {
  "name": "oe-schematron-service",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A server wrapper for C-CDA schematron validation in Node.js",
   "main": "app.js",
   "dependencies": {
