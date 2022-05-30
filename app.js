@@ -1,7 +1,14 @@
 // jshint node:true
 const http = require('http');
 const fs = require('fs');
-const config = require('./config');
+const config = {
+    server: {
+        port: 6662,
+        routesDirectory: './routes',
+        appDirectory: __dirname
+    }
+};
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -13,7 +20,7 @@ const port = config.server.port;
 app.set('port', port);
 
 const server = http.createServer(app);
-logger.info('HTTP server listening on port %s', port);
+logger.debug('HTTP server listening on port %s', port);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -51,26 +58,12 @@ function onError(error) {
 
 function create() {
     const app = express();
-    // Create base directory, if it doesn't already exist
-    let baseDirectory = path.join(__dirname, config.validator.baseDirectory);
-    fs.existsSync(baseDirectory) || fs.mkdirSync(baseDirectory);
-
     // Configure logging
     const winston = require('winston');
     const morgan = require('morgan');
-    const logDirectory = path.join(__dirname, config.server.logDirectory);
-    fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+    // log to console only for now!
     const logger = new winston.Logger({
         transports: [
-            new winston.transports.File({
-                level: 'info',
-                filename: logDirectory + '/validation_logs.log',
-                handleExceptions: true,
-                json: true,
-                maxsize: 5242880, //5MB
-                maxFiles: 5,
-                colorize: false
-            }),
             new winston.transports.Console({
                 level: 'debug',
                 handleExceptions: true,
@@ -82,7 +75,7 @@ function create() {
     });
     logger.stream = {
         write: function (message) {
-            logger.info(message);
+            logger.debug(message);
         }
     };
     app.use(morgan('dev', {stream: logger.stream}));
@@ -92,8 +85,8 @@ function create() {
 
     // Log incoming requests
     app.use(function (req, res, next) {
-        logger.info(((req.headers['x-forwarded-for'] || '').split(',')[0]
-            || req.connection.remoteAddress) + ' ' + req.method + ' ' + req.path);
+        logger.debug(((req.headers['x-forwarded-for'] || '').split(',')[0]
+            || req.socket.remoteAddress) + ' ' + req.method + ' ' + req.path);
         next();
     });
 
