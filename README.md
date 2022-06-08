@@ -1,6 +1,9 @@
 # oe-schematron-service
 A forked server wrapper for C-CDA schematron validation in Node.js from  [cda-schematron-server](https://github.com/ewadkins/cda-schematron-server) and modified for our purpose.
 
+### Schematron Location
+The latest HL7 schematron was downloaded from HL7's github repo here: [https://github.com/HL7/CDA-ccda-2.1](https://github.com/HL7/CDA-ccda-2.1).
+
 ### Install
 Cd into the ccdaservice directory:
 ```
