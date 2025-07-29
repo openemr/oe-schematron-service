@@ -8,7 +8,7 @@
     "cycle": "1.0.3",
     "express": "4.18.1",
     "morgan": "1.10.0",
-    "oe-cda-schematron": "file: ../packages/oe-cda-schematron",
+    "oe-cda-schematron": "openemr/oe-cda-schematron#master",
     "winston": "2.4.6"
   },
   "devDependencies": {
